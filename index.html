@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your attendance percentage and track progress towards 75% requirement. Simple and calendar modes available.">
+    <meta name="keywords" content="attendance calculator, 75% attendance, student attendance, academic tracker">
+    <meta name="author" content="Ashish Gupta">
+    <meta name="theme-color" content="#218D8D">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="75% Attendance Calculator - Ashish Gupta">
+    <meta property="og:description" content="Calculate your attendance percentage and track progress towards 75% requirement">
+    <meta property="og:url" content="https://bitcodeashishcloud.github.io/Ashish-Gupta-Portfolio/">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="75% Attendance Calculator - Ashish Gupta">
+    <meta property="twitter:description" content="Calculate your attendance percentage and track progress towards 75% requirement">
+    
+    <title>75% Attendance Calculator - Ashish Gupta</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <div class="background-gradient">
+        <div class="container">
+            <header class="header">
+                <h1 class="app-title"><a href="https://bitcodeashishcloud.github.io/Ashish-Gupta-Portfolio/">75% Attendance Calculator - Ashish Gupta</a></h1>
+                <p class="app-subtitle">Stay on track with your academic requirements</p>
+            </header>
+
+            <main class="main-content">
+                <!-- Mode Toggle -->
+                <div class="glass-card mode-toggle-card">
+                    <div class="mode-toggle">
+                        <button class="toggle-btn active" data-mode="simple">Simple Input</button>
+                        <button class="toggle-btn" data-mode="calendar">Calendar Mode</button>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <!-- Simple Input Mode -->
+                    <div id="simple-mode" class="glass-card input-card">
+                        <h2 class="section-title">Enter Your Attendance Data</h2>
+                        <div class="input-grid">
+                            <div class="form-group">
+                                <label for="totalLectures" class="form-label">Total Lectures Held</label>
+                                <input type="number" id="totalLectures" class="glass-input" min="0" max="1000" placeholder="e.g., 100" aria-describedby="totalLecturesHelp">
+                                <small id="totalLecturesHelp" class="form-help">Total number of lectures conducted so far</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="attendedLectures" class="form-label">Lectures Attended</label>
+                                <input type="number" id="attendedLectures" class="glass-input" min="0" max="1000" placeholder="e.g., 70" aria-describedby="attendedLecturesHelp">
+                                <small id="attendedLecturesHelp" class="form-help">Number of lectures you attended</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="upcomingLectures" class="form-label">Upcoming Lectures (Optional)</label>
+                                <input type="number" id="upcomingLectures" class="glass-input" min="0" max="1000" placeholder="e.g., 20" aria-describedby="upcomingLecturesHelp">
+                                <small id="upcomingLecturesHelp" class="form-help">Expected number of future lectures</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Mode -->
+                    <div id="calendar-mode" class="glass-card input-card hidden">
+                        <h2 class="section-title">Select Class Dates</h2>
+                        <p class="calendar-info">Each selected date counts as 8 classes</p>
+                        
+                        <div class="calendar-section">
+                            <div class="calendar-controls">
+                                <button class="calendar-nav-btn" id="prevMonth">←</button>
+                                <h3 class="calendar-month" id="currentMonth">August 2025</h3>
+                                <button class="calendar-nav-btn" id="nextMonth">→</button>
+                            </div>
+                            
+                            <div class="calendar-type-tabs">
+                                <button class="calendar-tab active" data-type="held">Lectures Held</button>
+                                <button class="calendar-tab" data-type="attended">Lectures Attended</button>
+                                <button class="calendar-tab" data-type="upcoming">Upcoming Lectures</button>
+                            </div>
+                            
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar days will be generated by JavaScript -->
+                            </div>
+                            
+                            <div class="calendar-summary">
+                                <div class="summary-item">
+                                    <span class="summary-label">Total Selected:</span>
+                                    <span class="summary-value" id="totalSelected">0 days (0 classes)</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Attended Selected:</span>
+                                    <span class="summary-value" id="attendedSelected">0 days (0 classes)</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Upcoming Selected:</span>
+                                    <span class="summary-value" id="upcomingSelected">0 days (0 classes)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="glass-card results-card">
+                        <h2 class="section-title">Your Attendance Analysis</h2>
+                        
+                        <!-- Current Percentage -->
+                        <div class="attendance-gauge">
+                            <div class="gauge-container">
+                                <div class="gauge-circle">
+                                    <div class="gauge-fill" id="gaugeFill"></div>
+                                    <div class="gauge-center">
+                                        <span class="gauge-percentage" id="currentPercentage">0%</span>
+                                        <span class="gauge-label">Current</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Grid -->
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-icon">📊</div>
+                                <div class="result-content">
+                                    <h3 class="result-title">Current Attendance</h3>
+                                    <p class="result-value" id="attendanceDisplay">0 / 0 lectures</p>
+                                    <p class="result-percentage" id="attendancePercentage">0%</p>
+                                </div>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="result-icon">🎯</div>
+                                <div class="result-content">
+                                    <h3 class="result-title">Required for 75%</h3>
+                                    <p class="result-value" id="requiredLectures">0 more lectures</p>
+                                    <p class="result-status" id="requiredStatus">Keep attending!</p>
+                                </div>
+                            </div>
+
+                            <div class="result-item">
+                                <div class="result-icon">⏭️</div>
+                                <div class="result-content">
+                                    <h3 class="result-title">Can Miss</h3>
+                                    <p class="result-value" id="canMissLectures">0 lectures</p>
+                                    <p class="result-status" id="missStatus">From upcoming</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn btn--secondary" id="resetBtn">Reset All</button>
+                            <button class="btn btn--primary" id="calculateBtn">Recalculate</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Help Modal -->
+            <div class="modal hidden" id="helpModal">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content glass-card">
+                    <div class="modal-header">
+                        <h3>How to Use This Calculator</h3>
+                        <button class="modal-close" id="closeModal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Simple Input Mode:</h4>
+                        <ul>
+                            <li>Enter total lectures held so far</li>
+                            <li>Enter how many you've attended</li>
+                            <li>Optionally enter upcoming lectures count</li>
+                        </ul>
+                        
+                        <h4>Calendar Mode:</h4>
+                        <ul>
+                            <li>Select dates for different lecture types</li>
+                            <li>Each date = 8 classes automatically</li>
+                            <li>Switch between tabs to mark different types</li>
+                        </ul>
+
+                        <h4>Calculations:</h4>
+                        <ul>
+                            <li><strong>Attendance %:</strong> (Attended ÷ Total) × 100</li>
+                            <li><strong>Required for 75%:</strong> Lectures needed to reach 75%</li>
+                            <li><strong>Can Miss:</strong> How many upcoming lectures you can skip</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Button -->
+            <button class="help-btn glass-btn" id="helpBtn" aria-label="Open help">?</button>
+            
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2025 <a href="https://bitcodeashishcloud.github.io/Ashish-Gupta-Portfolio/" target="_blank" rel="noopener">Ashish Gupta</a>. Made with ❤️ for students.</p>
+                <p class="footer-links">
+                    <a href="https://github.com/yourusername/attendance-calculator" target="_blank" rel="noopener">GitHub</a> • 
+                    <a href="#" id="privacyLink">Privacy</a> • 
+                    <a href="#" id="feedbackLink">Feedback</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
