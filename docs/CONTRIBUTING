@@ -1,0 +1,111 @@
+# Contributing Guide
+
+Thank you for your interest in contributing to the 75% Attendance Calculator! This guide will help you get started.
+
+## Development Setup
+
+1. **Fork and Clone**
+   ```bash
+   git clone https://github.com/bitcodeAShishcloud/attendance-calculator.git
+   cd attendance-calculator
+   ```
+
+2. **Local Development**
+   - No build process required - this is a static web application
+   - Simply open `index.html` in your browser or use a local server
+   - Recommended: Use VS Code with Live Server extension
+
+## Project Structure
+
+```
+attendance-calculator/
+├── index.html          # Main HTML file
+├── app.js             # JavaScript functionality
+├── style.css          # Styles and design system
+├── README.md          # Project documentation
+├── LICENSE            # MIT License
+└── docs/              # Documentation files
+    └── CONTRIBUTING.md # This file
+```
+
+## Code Style Guidelines
+
+### HTML
+- Use semantic HTML5 elements
+- Include proper ARIA labels for accessibility
+- Maintain consistent indentation (2 spaces)
+
+### CSS
+- Use CSS custom properties (variables) defined in `:root`
+- Follow BEM-like naming conventions for components
+- Maintain responsive design principles
+- Support both light and dark themes
+
+### JavaScript
+- Use modern ES6+ features
+- Maintain clear class structure
+- Add comments for complex logic
+- Handle errors gracefully
+- Use descriptive variable names
+
+## Feature Development
+
+### Adding New Features
+1. Create a new branch: `git checkout -b feature/your-feature-name`
+2. Implement your changes
+3. Test across different browsers and devices
+4. Update documentation if needed
+5. Submit a pull request
+
+### Testing Checklist
+- [ ] Works on desktop (Chrome, Firefox, Safari, Edge)
+- [ ] Works on mobile devices
+- [ ] Keyboard navigation works
+- [ ] Screen reader compatibility
+- [ ] Works with JavaScript disabled (graceful degradation)
+- [ ] Print styles look good
+
+## Accessibility Standards
+
+This project follows WCAG 2.1 AA guidelines:
+- Proper color contrast ratios
+- Keyboard navigation support
+- Screen reader compatibility
+- Focus indicators
+- Semantic markup
+
+## Performance Considerations
+
+- Keep bundle size minimal (currently ~50KB total)
+- Optimize for fast loading on slow connections
+- Use efficient CSS selectors
+- Minimize DOM manipulations
+
+## Browser Support
+
+Target browsers:
+- Chrome 88+
+- Firefox 85+
+- Safari 14+
+- Edge 88+
+
+## Reporting Issues
+
+When reporting issues, please include:
+- Browser and version
+- Device type (desktop/mobile)
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots if relevant
+
+## Pull Request Process
+
+1. Ensure your code follows the style guidelines
+2. Update documentation if needed
+3. Test thoroughly
+4. Write clear commit messages
+5. Reference any related issues
+
+## Questions?
+
+Feel free to open an issue for any questions about contributing!
